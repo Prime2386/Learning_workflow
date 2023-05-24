@@ -1,19 +1,19 @@
+name: Password Workflow
+
+on: [push]
+
 jobs:
-  example_job:
+  password_job:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Use user credentials
+      - name: SECRET_TOKEN
         run: |
-          echo ${{ secrets.USER_CREDENTIALS }} > credentials.txt
-          # Use the credentials as needed in subsequent steps
-          # For security reasons, be cautious not to expose the credentials in logs or output.
+          # Retrieve the password from the GitHub secret
+          password=$PASSWORD_SECRET
 
-      - name: Run a command with the credentials
-        run: |
-          # Use the credentials stored in the credentials.txt file
-          # For example, pass the credentials as arguments to a command or configure a tool
-
+          # Use the password variable in subsequent steps or commands
+          echo "Your password is: $password"
